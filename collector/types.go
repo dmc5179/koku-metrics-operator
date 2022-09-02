@@ -135,6 +135,7 @@ type podRow struct {
 	PodUsageMemoryByteSeconds   string `mapstructure:"pod-usage-memory-byte-seconds"`
 	PodRequestMemoryByteSeconds string `mapstructure:"pod-request-memory-byte-seconds"`
 	PodLimitMemoryByteSeconds   string `mapstructure:"pod-limit-memory-byte-seconds"`
+	PodRunTimeSeconds           string `mapstructure:"pod-runtime-seconds"`
 	PodLabels                   string `mapstructure:"pod_labels"`
 }
 
@@ -153,6 +154,7 @@ func (podRow) csvHeader() []string {
 		"pod_usage_memory_byte_seconds",
 		"pod_request_memory_byte_seconds",
 		"pod_limit_memory_byte_seconds",
+		"pod_runtime_seconds",
 		"node_capacity_cpu_cores",
 		"node_capacity_cpu_core_seconds",
 		"node_capacity_memory_bytes",
@@ -176,6 +178,7 @@ func (row podRow) csvRow() []string {
 		row.PodUsageMemoryByteSeconds,
 		row.PodRequestMemoryByteSeconds,
 		row.PodLimitMemoryByteSeconds,
+		row.PodRunTimeSeconds,
 		row.NodeCapacityCPUCores,
 		row.ModeCapacityCPUCoreSeconds,
 		row.NodeCapacityMemoryBytes,

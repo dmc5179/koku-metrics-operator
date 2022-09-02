@@ -204,6 +204,18 @@ var (
 			MetricKeyRegex: regexFields{"pod_labels": "label_*"},
 			RowKey:         []model.LabelName{"pod", "namespace"},
 		},
+		query{
+			Name:        "pod-runtime",
+			QueryString: "max(kube_pod_status_phase{phase='Running'}) without (container, instance, uid)",
+			MetricKey:   staticFields{"pod": "pod", "namespace": "namespace"},
+			QueryValue: &saveQueryValue{
+				ValName:         "pod-runtime",
+				Method:          "sum",
+				Factor:          sumFactor,
+				TransformedName: "pod-runtime-seconds",
+			},
+			RowKey: []model.LabelName{"pod", "namespace"},
+		},
 	}
 	namespaceQueries = &querys{
 		query{
